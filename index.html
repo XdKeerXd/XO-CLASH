@@ -27,37 +27,51 @@
             <span class="brand-text">XO CLASH</span>
         </div>
         <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#gameplay">Gameplay</a>
-            <a href="#screenshots">Screenshots</a>
-            <a href="#download" class="nav-download">Download</a>
+            <a href="#updates" data-i18n="nav_updates">Updates</a>
+            <a href="#features" data-i18n="nav_features">Features</a>
+            <a href="#download" class="nav-download" data-i18n="nav_download">Download</a>
+
+            <!-- Controls -->
+            <div class="nav-controls">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">☀️</button>
+                <button id="lang-toggle" class="icon-btn" title="Switch Language">AR/EN</button>
+            </div>
         </div>
     </nav>
+
+    <!-- Development Status Banner -->
+    <div class="status-banner">
+        <div class="container">
+            <span class="status-icon">⚠️</span>
+            <span class="status-text" data-i18n="status_msg">Development Paused: Fixing 90% of bugs. Multiplayer
+                temporarily disabled due to complexity.</span>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">🎮 Mobile Game</div>
+            <div class="hero-badge" data-i18n="hero_badge">🎮 Mobile Game</div>
             <h1 class="hero-title">
                 <span class="title-x">X</span><span class="title-o">O</span>
                 <span class="title-clash">CLASH</span>
             </h1>
-            <p class="hero-subtitle">The Ultimate Tic-Tac-Toe Experience</p>
-            <p class="hero-description">
+            <p class="hero-subtitle" data-i18n="hero_subtitle">The Ultimate Tic-Tac-Toe Experience</p>
+            <p class="hero-description" data-i18n="hero_desc">
                 Experience the classic game reimagined with stunning neon graphics,
-                power-ups, and multiplayer action. Challenge your friends locally or online!
+                power-ups, and multiplayer action. Challenge your friends locally!
             </p>
             <div class="hero-cta">
                 <a href="#download" class="btn btn-primary btn-glow">
                     <span class="btn-icon">📱</span>
-                    Download APK
+                    <span data-i18n="btn_download">Download APK</span>
                 </a>
-                <a href="#features" class="btn btn-secondary">
-                    Learn More
+                <a href="#updates" class="btn btn-secondary" data-i18n="btn_updates">
+                    View Updates
                 </a>
             </div>
             <div class="hero-credit">
-                <span>Created by</span>
+                <span data-i18n="created_by">Created by</span>
                 <strong>Ahmed Jaballah</strong>
             </div>
         </div>
@@ -77,9 +91,31 @@
                             <div class="cell"></div>
                             <div class="cell x">X</div>
                         </div>
-                        <div class="preview-turn">X Wins! 🎉</div>
+                        <div class="preview-turn" data-i18n="preview_win">X Wins! 🎉</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Update Logs Section -->
+    <section class="updates" id="updates">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-icon">📝</span>
+                <span data-i18n="updates_title">Update Logs</span>
+            </h2>
+            <div class="update-card">
+                <div class="update-header">
+                    <span class="version">v3.1 - The "Polish" Update</span>
+                    <span class="date">Feb 1, 2026</span>
+                </div>
+                <ul class="update-list">
+                    <li data-i18n="log_1">✅ Fixed 90% of game-breaking bugs.</li>
+                    <li data-i18n="log_2">🛑 Online Multiplayer Disabled (Temporarily) to ensure stability.</li>
+                    <li data-i18n="log_3">✨ Added "Coming Soon" status for online features.</li>
+                    <li data-i18n="log_4">📱 Improved UI responsiveness.</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -89,149 +125,23 @@
         <div class="container">
             <h2 class="section-title">
                 <span class="title-icon">⚡</span>
-                Game Features
+                <span data-i18n="features_title">Game Features</span>
             </h2>
-            <p class="section-subtitle">Everything you need for the ultimate XO experience</p>
-
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🎮</div>
-                    <h3>Local Multiplayer</h3>
-                    <p>Challenge your friends on the same device. Take turns and prove who's the best!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌐</div>
-                    <h3>Online Multiplayer</h3>
-                    <p>Play with anyone around the world using Nakama real-time multiplayer.</p>
+                    <h3 data-i18n="feat_local_title">Local Multiplayer</h3>
+                    <p data-i18n="feat_local_desc">Challenge your friends on the same device.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">✨</div>
-                    <h3>Neon Graphics</h3>
-                    <p>Beautiful glowing X and O symbols with stunning particle effects.</p>
+                    <h3 data-i18n="feat_neon_title">Neon Graphics</h3>
+                    <p data-i18n="feat_neon_desc">Beautiful glowing visuals and particles.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Power-Ups</h3>
-                    <p>Swap marks, block opponents, or get an extra move with special abilities!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⏱️</div>
-                    <h3>Timed Turns</h3>
-                    <p>Add pressure with customizable turn timers. Think fast or lose your turn!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📐</div>
-                    <h3>Multiple Board Sizes</h3>
-                    <p>Play on 3×3, 4×4, or 5×5 boards for different challenges.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎵</div>
-                    <h3>Sound Effects</h3>
-                    <p>Satisfying audio feedback with every move and celebration sounds on victory.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Customizable Themes</h3>
-                    <p>Choose from Neon, Classic, or Dark themes to match your style.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gameplay Section -->
-    <section class="gameplay" id="gameplay">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="title-icon">🕹️</span>
-                How to Play
-            </h2>
-
-            <div class="gameplay-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Choose Your Mode</h3>
-                        <p>Select Local Multiplayer to play with a friend on the same device, or Online to challenge
-                            players worldwide.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Take Turns</h3>
-                        <p>X always goes first! Tap any empty cell to place your mark. The turn indicator shows whose
-                            move it is.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Get 3 in a Row</h3>
-                        <p>Line up three of your symbols horizontally, vertically, or diagonally to win. Watch out for
-                            your opponent!</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Celebrate Victory!</h3>
-                        <p>Winners are greeted with stunning particle effects and victory sounds. Hit Replay for another
-                            round!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Screenshots Section -->
-    <section class="screenshots" id="screenshots">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="title-icon">📸</span>
-                Game Screens
-            </h2>
-
-            <div class="screenshots-grid">
-                <div class="screenshot-card">
-                    <div class="screenshot-preview main-menu">
-                        <div class="preview-header">✨ XO CLASH ✨</div>
-                        <div class="preview-credit">Created by Ahmed Jaballah</div>
-                        <div class="preview-buttons">
-                            <div class="preview-btn">🎮 PLAY LOCAL</div>
-                            <div class="preview-btn">🌐 PLAY ONLINE</div>
-                            <div class="preview-btn">⚙️ SETTINGS</div>
-                        </div>
-                    </div>
-                    <p class="screenshot-label">Main Menu</p>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-preview game-screen">
-                        <div class="preview-turn-indicator">X's Turn</div>
-                        <div class="preview-board">
-                            <div class="cell x">X</div>
-                            <div class="cell"></div>
-                            <div class="cell o">O</div>
-                            <div class="cell"></div>
-                            <div class="cell x">X</div>
-                            <div class="cell"></div>
-                            <div class="cell o">O</div>
-                            <div class="cell"></div>
-                            <div class="cell"></div>
-                        </div>
-                    </div>
-                    <p class="screenshot-label">Game Screen</p>
-                </div>
-                <div class="screenshot-card">
-                    <div class="screenshot-preview win-screen">
-                        <div class="win-celebration">🎉</div>
-                        <div class="win-text">PLAYER X WINS!</div>
-                        <div class="win-credit">✨ Created by Ahmed Jaballah ✨</div>
-                        <div class="win-buttons">
-                            <span class="win-btn">🔄 Replay</span>
-                            <span class="win-btn">🏠 Menu</span>
-                        </div>
-                    </div>
-                    <p class="screenshot-label">Victory Screen</p>
+                    <div class="feature-icon">🏆</div>
+                    <h3 data-i18n="feat_leader_title">Global Leaderboards</h3>
+                    <p data-i18n="feat_leader_desc">Compete for the top spot globally.</p>
                 </div>
             </div>
         </div>
@@ -241,66 +151,38 @@
     <section class="download" id="download">
         <div class="container">
             <div class="download-card">
-                <div class="download-glow"></div>
                 <div class="download-content">
-                    <h2 class="download-title">Download XO Clash</h2>
-                    <p class="download-subtitle">Get the game now and start playing!</p>
+                    <h2 class="download-title" data-i18n="dl_title">Download XO Clash</h2>
+                    <p class="download-subtitle" data-i18n="dl_subtitle">Get the latest version now!</p>
 
-                    <div class="download-info">
-                        <div class="info-item">
-                            <span class="info-icon">📦</span>
-                            <span class="info-text">Version 1.0.0</span>
+                    <div class="download-flex">
+                        <div class="download-qr">
+                            <img src="qrcode.png" alt="Scan to Download">
+                            <span data-i18n="scan_qr">Scan to Install</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-icon">📱</span>
-                            <span class="info-text">Android</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-icon">💾</span>
-                            <span class="info-text">~15 MB</span>
+                        <div class="download-main">
+                            <a href="https://gofile.io/d/e0ONVT" class="btn btn-download" target="_blank">
+                                <span class="download-icon">⬇️</span>
+                                <span class="download-text">
+                                    <strong data-i18n="btn_dl_apk">Download APK</strong>
+                                    <small data-i18n="dl_platform">For Android</small>
+                                </span>
+                            </a>
+                            <div class="platforms-coming-soon">
+                                <span data-i18n="coming_soon_platforms">Coming Next Update: Windows, Linux, Web</span>
+                            </div>
                         </div>
                     </div>
-
-                    <a href="https://gofile.io/d/PxG6W0" class="btn btn-download" target="_blank">
-                        <span class="download-icon">⬇️</span>
-                        <span class="download-text">
-                            <strong>Download APK</strong>
-                            <small>For Android</small>
-                        </span>
-                    </a>
-
-                    <p class="download-note">
-                        📌 Enable "Install from Unknown Sources" in your Android settings to install the APK.
-                    </p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Credits Section -->
-    <section class="credits">
-        <div class="container">
-            <h2 class="credits-title">Created by Ahmed Jaballah</h2>
-            <div class="credits-roles">
-                <span class="credit-role">🎮 Game Concept</span>
-                <span class="credit-role">💻 Programming</span>
-                <span class="credit-role">🎨 UI/UX Design</span>
-                <span class="credit-role">✨ Art & Animation</span>
-                <span class="credit-role">🎵 Music & Sound</span>
-            </div>
-            <p class="credits-copyright">© 2026 Ahmed Jaballah. All Rights Reserved.</p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-brand">
-                <span class="brand-icon">✨</span>
-                <span>XO CLASH</span>
-            </div>
             <p class="footer-text">
-                Made with ❤️ by <strong>Ahmed Jaballah</strong>
+                <span data-i18n="footer_made">Made with ❤️ by</span> <strong>Ahmed Jaballah</strong>
             </p>
         </div>
     </footer>

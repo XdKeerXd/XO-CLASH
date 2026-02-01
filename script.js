@@ -1,166 +1,145 @@
-// XO Clash Website JavaScript
-// Created by Ahmed Jaballah
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Translation Data ---
+    const translations = {
+        en: {
+            nav_updates: "Updates",
+            nav_features: "Features",
+            nav_download: "Download",
+            status_msg: "Development Paused: Fixing 90% of bugs. Multiplayer temporarily disabled due to complexity.",
+            hero_badge: "🎮 Mobile Game",
+            hero_subtitle: "The Ultimate Tic-Tac-Toe Experience",
+            hero_desc: "Experience the classic game reimagined with stunning neon graphics, power-ups, and multiplayer action. Challenge your friends locally!",
+            btn_download: "Download APK",
+            btn_updates: "View Updates",
+            created_by: "Created by",
+            preview_win: "X Wins! 🎉",
+            updates_title: "Update Logs",
+            log_1: "✅ Fixed 90% of game-breaking bugs.",
+            log_2: "🛑 Online Multiplayer Disabled (Temporarily) to ensure stability.",
+            log_3: "✨ Added 'Coming Soon' status for online features.",
+            log_4: "📱 Improved UI responsiveness.",
+            features_title: "Game Features",
+            feat_local_title: "Local Multiplayer",
+            feat_local_desc: "Challenge your friends on the same device.",
+            feat_neon_title: "Neon Graphics",
+            feat_neon_desc: "Beautiful glowing visuals and particles.",
+            feat_leader_title: "Global Leaderboards",
+            feat_leader_desc: "Compete for the top spot globally.",
+            dl_title: "Download XO Clash",
+            dl_subtitle: "Get the latest version now!",
+            scan_qr: "Scan to Install",
+            btn_dl_apk: "Download APK",
+            dl_platform: "For Android",
+            coming_soon_platforms: "Coming Next Update: Windows, Linux, Web",
+            footer_made: "Made with ❤️ by"
+        },
+        ar: {
+            nav_updates: "التحديثات",
+            nav_features: "المميزات",
+            nav_download: "تحميل",
+            status_msg: "التطوير متوقف مؤقتًا: تم إصلاح 90% من الأخطاء. تم تعطيل اللعب الجماعي مؤقتًا للتحسين.",
+            hero_badge: "🎮 لعبة جوال",
+            hero_subtitle: "تجربة إكس أو (Tic-Tac-Toe) المثالية",
+            hero_desc: "جرب اللعبة الكلاسيكية برسومات نيون مذهلة، وقوى خاصة، ولعب جماعي. تحدى أصدقائك محليًا!",
+            btn_download: "تحميل APK",
+            btn_updates: "سجل التحديثات",
+            created_by: "تم الإنشاء بواسطة",
+            preview_win: "X فاز! 🎉",
+            updates_title: "سجل التحديثات",
+            log_1: "✅ تم إصلاح 90% من الأخطاء البرمجية.",
+            log_2: "🛑 تم تعطيل اللعب الجماعي أونلاين (مؤقتاً) لضمان الاستقرار.",
+            log_3: "✨ إضافة حالة 'قريباً' للميزات الأونلاين.",
+            log_4: "📱 تحسين استجابة واجهة المستخدم.",
+            features_title: "مميزات اللعبة",
+            feat_local_title: "لعب جماعي محلي",
+            feat_local_desc: "تحدى أصدقائك على نفس الجهاز.",
+            feat_neon_title: "رسومات نيون",
+            feat_neon_desc: "رموز متوهجة جميلة ومؤثرات بصرية.",
+            feat_leader_title: "لوحة صدارة عالمية",
+            feat_leader_desc: "نافس على المركز الأول عالمياً.",
+            dl_title: "تحميل XO Clash",
+            dl_subtitle: "احصل على أحدث نسخة الآن!",
+            scan_qr: "امسح للتثبيت",
+            btn_dl_apk: "تحميل اللعبة",
+            dl_platform: "للأندرويد",
+            coming_soon_platforms: "قادم في التحديث القادم: ويندوز، لينكس، ويب",
+            footer_made: "صنع بـ ❤️ بواسطة"
+        }
+    };
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize particles
+    // --- State ---
+    let currentLang = 'en';
+    let currentTheme = 'dark';
+
+    // --- DOM Elements ---
+    const langBtn = document.getElementById('lang-toggle');
+    const themeBtn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+
+    // --- Functions ---
+    function updateLanguage() {
+        // Set Direction
+        if (currentLang === 'ar') {
+            html.setAttribute('dir', 'rtl');
+            html.setAttribute('lang', 'ar');
+        } else {
+            html.setAttribute('dir', 'ltr');
+            html.setAttribute('lang', 'en');
+        }
+
+        // Update Text
+        const data = translations[currentLang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (data[key]) {
+                el.innerText = data[key];
+            }
+        });
+    }
+
+    function toggleTheme() {
+        if (currentTheme === 'dark') {
+            currentTheme = 'light';
+            html.setAttribute('data-theme', 'light');
+            themeBtn.innerText = '🌙';
+        } else {
+            currentTheme = 'dark';
+            html.removeAttribute('data-theme');
+            themeBtn.innerText = '☀️';
+        }
+    }
+
+    // --- Event Listeners ---
+    langBtn.addEventListener('click', () => {
+        currentLang = currentLang === 'en' ? 'ar' : 'en';
+        langBtn.innerText = currentLang === 'en' ? 'AR' : 'EN';
+        updateLanguage();
+    });
+
+    themeBtn.addEventListener('click', toggleTheme);
+
+    // --- Particle Logic (Existing) ---
     createParticles();
-    
-    // Smooth scroll for navigation
-    initSmoothScroll();
-    
-    // Navbar scroll effect
-    initNavbarEffect();
-    
-    // Animate elements on scroll
-    initScrollAnimations();
 });
 
-// Create floating particles background
 function createParticles() {
     const container = document.getElementById('particles');
-    const colors = ['#ff4d8d', '#00f5d4', '#ffd700', '#9d4edd'];
-    const particleCount = 30;
-    
-    for (let i = 0; i < particleCount; i++) {
+    const colors = ['#ff0055', '#00f5d4']; // Pink and Cyan
+
+    for (let i = 0; i < 50; i++) {
         const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        // Random properties
-        const size = Math.random() * 6 + 3;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        const left = Math.random() * 100;
-        const delay = Math.random() * 15;
-        const duration = Math.random() * 10 + 10;
-        
         particle.style.cssText = `
-            width: ${size}px;
-            height: ${size}px;
-            background: ${color};
-            left: ${left}%;
-            animation-delay: ${delay}s;
-            animation-duration: ${duration}s;
-            box-shadow: 0 0 ${size * 2}px ${color};
+            position: absolute;
+            width: ${Math.random() * 4 + 2}px;
+            height: ${Math.random() * 4 + 2}px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+            opacity: ${Math.random() * 0.5 + 0.1};
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float ${Math.random() * 3 + 2}s infinite alternate;
         `;
-        
         container.appendChild(particle);
     }
 }
-
-// Smooth scroll for anchor links
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// Navbar background on scroll
-function initNavbarEffect() {
-    const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(10, 10, 20, 0.98)';
-            navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
-        } else {
-            navbar.style.background = 'rgba(10, 10, 20, 0.9)';
-            navbar.style.boxShadow = 'none';
-        }
-    });
-}
-
-// Animate elements when they come into view
-function initScrollAnimations() {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-            }
-        });
-    }, observerOptions);
-    
-    // Observe feature cards
-    document.querySelectorAll('.feature-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = `all 0.6s ease ${index * 0.1}s`;
-        observer.observe(card);
-    });
-    
-    // Observe steps
-    document.querySelectorAll('.step').forEach((step, index) => {
-        step.style.opacity = '0';
-        step.style.transform = 'translateX(-30px)';
-        step.style.transition = `all 0.6s ease ${index * 0.15}s`;
-        observer.observe(step);
-    });
-    
-    // Observe screenshot cards
-    document.querySelectorAll('.screenshot-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'scale(0.9)';
-        card.style.transition = `all 0.6s ease ${index * 0.1}s`;
-        observer.observe(card);
-    });
-}
-
-// Add animate-in class handler
-document.addEventListener('DOMContentLoaded', () => {
-    const style = document.createElement('style');
-    style.textContent = `
-        .animate-in {
-            opacity: 1 !important;
-            transform: translateY(0) translateX(0) scale(1) !important;
-        }
-    `;
-    document.head.appendChild(style);
-});
-
-// Download button analytics (optional)
-document.querySelector('.btn-download')?.addEventListener('click', function() {
-    console.log('Download initiated - XO Clash APK');
-    // You could add analytics tracking here
-});
-
-// Easter egg - Konami code
-let konamiCode = [];
-const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-
-document.addEventListener('keydown', (e) => {
-    konamiCode.push(e.key);
-    konamiCode = konamiCode.slice(-10);
-    
-    if (konamiCode.join(',') === konamiSequence.join(',')) {
-        // Easter egg activated!
-        document.body.style.animation = 'rainbow 2s linear infinite';
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes rainbow {
-                0% { filter: hue-rotate(0deg); }
-                100% { filter: hue-rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        setTimeout(() => {
-            document.body.style.animation = '';
-        }, 5000);
-    }
-});
-
-console.log('%c✨ XO Clash Website ✨', 'color: #ff4d8d; font-size: 24px; font-weight: bold;');
-console.log('%cCreated by Ahmed Jaballah', 'color: #00f5d4; font-size: 14px;');
