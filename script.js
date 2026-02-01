@@ -6,14 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_features: "Features",
             nav_download: "Download",
             status_msg: "Development Paused: Fixing 90% of bugs. Multiplayer temporarily disabled due to complexity.",
-            hero_badge: "🎮 Mobile Game",
+            hero_badge: "🎮 Mobile & TV Game",
             hero_subtitle: "The Ultimate Tic-Tac-Toe Experience",
-            hero_desc: "Experience the classic game reimagined with stunning neon graphics, power-ups, and multiplayer action. Challenge your friends locally!",
+            hero_desc: "Experience the classic game reimagined with stunning neon graphics, power-ups, and multiplayer action. Now compatible with Android TV!",
             btn_download: "Download APK",
             btn_updates: "View Updates",
             created_by: "Created by",
             preview_win: "X Wins! 🎉",
             updates_title: "Update Logs",
+            log_0_1: "✅ Added full Android TV support with D-pad navigation.",
+            log_0_2: "✨ Improved focus visuals for TV remotes.",
             log_1: "✅ Fixed 90% of game-breaking bugs.",
             log_2: "🛑 Online Multiplayer Disabled (Temporarily) to ensure stability.",
             log_3: "✨ Added 'Coming Soon' status for online features.",
@@ -21,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
             features_title: "Game Features",
             feat_local_title: "Local Multiplayer",
             feat_local_desc: "Challenge your friends on the same device.",
+            feat_tv_title: "Android TV Ready",
+            feat_tv_desc: "Play on the big screen with full remote support.",
             feat_neon_title: "Neon Graphics",
             feat_neon_desc: "Beautiful glowing visuals and particles.",
             feat_leader_title: "Global Leaderboards",
@@ -29,8 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
             dl_subtitle: "Get the latest version now!",
             scan_qr: "Scan to Install",
             btn_dl_apk: "Download APK",
-            dl_platform: "For Android",
-            coming_soon_platforms: "Coming Next Update: Windows, Linux, Web",
+            dl_platform: "For Android & TV",
+            windows_next: "Windows Version: Coming in Next Update!",
+            coming_soon_others: "Other Platforms: Linux, Web",
             footer_made: "Made with ❤️ by"
         },
         ar: {
@@ -38,14 +43,16 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_features: "المميزات",
             nav_download: "تحميل",
             status_msg: "التطوير متوقف مؤقتًا: تم إصلاح 90% من الأخطاء. تم تعطيل اللعب الجماعي مؤقتًا للتحسين.",
-            hero_badge: "🎮 لعبة جوال",
+            hero_badge: "🎮 لعبة جوال وتلفاز",
             hero_subtitle: "تجربة إكس أو (Tic-Tac-Toe) المثالية",
-            hero_desc: "جرب اللعبة الكلاسيكية برسومات نيون مذهلة، وقوى خاصة، ولعب جماعي. تحدى أصدقائك محليًا!",
+            hero_desc: "جرب اللعبة الكلاسيكية برسومات نيون مذهلة، وقوى خاصة، ولعب جماعي. الآن متوافقة مع أندرويد تي في!",
             btn_download: "تحميل APK",
             btn_updates: "سجل التحديثات",
             created_by: "تم الإنشاء بواسطة",
             preview_win: "X فاز! 🎉",
             updates_title: "سجل التحديثات",
+            log_0_1: "✅ إضافة دعم كامل لأجهزة Android TV مع التنقل عبر الأزرار.",
+            log_0_2: "✨ تحسين المؤثرات البصرية للتركيز لأجهزة التحكم.",
             log_1: "✅ تم إصلاح 90% من الأخطاء البرمجية.",
             log_2: "🛑 تم تعطيل اللعب الجماعي أونلاين (مؤقتاً) لضمان الاستقرار.",
             log_3: "✨ إضافة حالة 'قريباً' للميزات الأونلاين.",
@@ -53,16 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
             features_title: "مميزات اللعبة",
             feat_local_title: "لعب جماعي محلي",
             feat_local_desc: "تحدى أصدقائك على نفس الجهاز.",
+            feat_tv_title: "جاهز للتلفاز",
+            feat_tv_desc: "العب على الشاشة الكبيرة مع دعم كامل لجهاز التحكم.",
             feat_neon_title: "رسومات نيون",
             feat_neon_desc: "رموز متوهجة جميلة ومؤثرات بصرية.",
             feat_leader_title: "لوحة صدارة عالمية",
             feat_leader_desc: "نافس على المركز الأول عالمياً.",
             dl_title: "تحميل XO Clash",
             dl_subtitle: "احصل على أحدث نسخة الآن!",
-            scan_qr: "امسح للتثبيت",
             btn_dl_apk: "تحميل اللعبة",
-            dl_platform: "للأندرويد",
-            coming_soon_platforms: "قادم في التحديث القادم: ويندوز، لينكس، ويب",
+            dl_platform: "للأندرويد والتلفاز",
+            windows_next: "نسخة الويندوز: قادمة في التحديث القادم!",
+            coming_soon_others: "منصات أخرى: لينكس، ويب",
             footer_made: "صنع بـ ❤️ بواسطة"
         }
     };
@@ -72,8 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTheme = 'dark';
 
     // --- DOM Elements ---
-    const langBtn = document.getElementById('lang-toggle');
-    const themeBtn = document.getElementById('theme-toggle');
+    const langBtns = document.querySelectorAll('.lang-toggle');
+    const themeBtns = document.querySelectorAll('.theme-toggle');
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const navLinks = document.getElementById('nav-links');
     const html = document.documentElement;
 
     // --- Functions ---
@@ -95,28 +106,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.innerText = data[key];
             }
         });
+
+        // Update button text for all lang buttons
+        langBtns.forEach(btn => {
+            btn.innerText = currentLang === 'en' ? 'AR/EN' : 'EN/AR';
+        });
     }
 
     function toggleTheme() {
         if (currentTheme === 'dark') {
             currentTheme = 'light';
             html.setAttribute('data-theme', 'light');
-            themeBtn.innerText = '🌙';
+            themeBtns.forEach(btn => btn.innerText = '🌙');
         } else {
             currentTheme = 'dark';
             html.removeAttribute('data-theme');
-            themeBtn.innerText = '☀️';
+            themeBtns.forEach(btn => btn.innerText = '☀️');
         }
     }
 
     // --- Event Listeners ---
-    langBtn.addEventListener('click', () => {
-        currentLang = currentLang === 'en' ? 'ar' : 'en';
-        langBtn.innerText = currentLang === 'en' ? 'AR' : 'EN';
-        updateLanguage();
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            updateLanguage();
+        });
     });
 
-    themeBtn.addEventListener('click', toggleTheme);
+    themeBtns.forEach(btn => {
+        btn.addEventListener('click', toggleTheme);
+    });
+
+    // Mobile Menu Toggle
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        });
+    });
 
     // --- Particle Logic (Existing) ---
     createParticles();

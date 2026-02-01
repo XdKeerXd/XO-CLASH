@@ -182,9 +182,47 @@ body {
     margin-left: 20px;
 }
 
+.mobile-only {
+    display: none;
+}
+
 [dir="rtl"] .nav-controls {
     margin-left: 0;
     margin-right: 20px;
+}
+
+/* Mobile Toggle */
+.mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.mobile-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-primary);
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.mobile-toggle.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.mobile-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-toggle.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 .icon-btn {
@@ -733,10 +771,30 @@ section {
     opacity: 0.8;
 }
 
+.platforms-info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.platform-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 1.1rem;
+    background: rgba(255, 215, 0, 0.1);
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
 .platforms-coming-soon {
     color: var(--text-muted);
     font-size: 0.9rem;
-    margin-top: 10px;
     padding: 8px 16px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 20px;
@@ -791,10 +849,62 @@ section {
 
 /* Responsive */
 @media (max-width: 968px) {
+    .navbar {
+        padding: 15px 24px;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: flex;
+        margin: 0;
+        justify-content: center;
+        width: 100%;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: var(--bg-card);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: 0.4s ease-in-out;
+        z-index: 1000;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    [dir="rtl"] .nav-links {
+        right: auto;
+        left: -100%;
+    }
+
+    [dir="rtl"] .nav-links.active {
+        left: 0;
+    }
+
     .hero {
         flex-direction: column;
         text-align: center;
         padding-top: 140px;
+        padding-left: 24px;
+        padding-right: 24px;
     }
 
     .hero-content {
@@ -805,8 +915,14 @@ section {
         font-size: 3rem;
     }
 
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .hero-cta {
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .hero-credit {
@@ -814,34 +930,37 @@ section {
     }
 
     .hero-visual {
-        margin-top: 60px;
+        margin-top: 40px;
     }
 
-    /* Mobile Nav */
-    .nav-links {
-        display: none;
-        /* Can add hamburger later, for now hide on mobile to keep clean */
+    .phone-mockup {
+        width: 240px;
+        height: 480px;
     }
 
-    /* Show controls on mobile? Maybe move them to top right? */
-    .navbar {
-        justify-content: space-between;
-    }
-
-    /* Force show specific mobile controls */
-    .nav-links.mobile-visible {
-        display: flex;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        right: 0;
-        background: var(--bg-card);
-        flex-direction: column;
-        padding: 20px;
+    .cell {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
     }
 
     .download-flex {
         flex-direction: column;
         gap: 30px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
